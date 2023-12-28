@@ -4,7 +4,7 @@ import (
 	"crypto/tls"
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net"
 	"net/http"
@@ -211,7 +211,7 @@ func sendZookeeperCmd(conn net.Conn, host, cmd string) string {
 		log.Printf("warning: failed to send '%s' to '%s': %s", cmd, host, err)
 	}
 
-	res, err := ioutil.ReadAll(conn)
+	res, err := io.ReadAll(conn)
 	if err != nil {
 		log.Printf("warning: failed read '%s' response from '%s': %s", cmd, host, err)
 	}
